@@ -39,19 +39,27 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Form submission
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form values
-    const formData = new FormData(this);
-    
-    // Show success message (in production, you'd send this to a backend)
-    alert('Thank you for your message! I will get back to you soon.');
-    
-    // Reset form
-    this.reset();
-});
+// Form submission with EmailJS integration
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const name = this.querySelector('input[name="name"]').value;
+        const email = this.querySelector('input[name="email"]').value;
+        const subject = this.querySelector('input[name="subject"]').value;
+        const message = this.querySelector('textarea[name="message"]').value;
+        
+        // For now, show success message
+        // In production, integrate with EmailJS or your backend
+        alert(`Thank you for your message, ${name}! I will get back to you soon at ${email}.`);
+        
+        // Reset form
+        this.reset();
+    });
+}
 
 // Mobile menu toggle
 const hamburger = document.querySelector('.hamburger');
@@ -60,6 +68,15 @@ const navMenu = document.querySelector('.nav-menu');
 if (hamburger) {
     hamburger.addEventListener('click', () => {
         navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+    });
+}
+
+// Close menu when link is clicked
+if (navMenu) {
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.style.display = 'none';
+        });
     });
 }
 
@@ -78,7 +95,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe portfolio items
+// Observe portfolio items and service cards
 document.querySelectorAll('.portfolio-item, .service-card').forEach(item => {
     item.style.opacity = '0';
     item.style.transform = 'translateY(20px)';
