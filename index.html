@@ -3,11 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MTGODSON - Professional Graphic Designer, Video Editor, and Logo & Brand Designer. Creating professional visual content for businesses and organizations.">
+    <meta name="keywords" content="graphic designer, video editor, logo design, brand identity, creative design, poster design, social media graphics, UI/UX design">
+    <meta name="author" content="MTGODSON">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="MTGODSON - Graphic Designer & Creative Director">
+    <meta property="og:description" content="Transform your ideas into professional visual content with expert design services.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://Goodlucj.github.io/MTGODSON-">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MTGODSON - Graphic Designer & Creative Director">
+    <meta name="twitter:description" content="Professional design services including logos, branding, and video editing.">
+    
+    <!-- Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "MTGODSON",
+      "url": "https://Goodlucj.github.io/MTGODSON-",
+      "email": "goodluckp290@gmail.com",
+      "telephone": "+255765481200",
+      "jobTitle": "Graphic Designer, Video Editor, Brand Designer",
+      "description": "Creative Graphic Designer, Video Editor, and Logo & Brand Designer",
+      "knowsLanguage": "en",
+      "sameAs": [
+        "https://instagram.com",
+        "https://twitter.com",
+        "https://behance.net",
+        "https://linkedin.com"
+      ]
+    }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-XXXXXXXXX-X');
+    </script>
+
+    <!-- Sitemap and robots.txt reference -->
+    <link rel="canonical" href="https://Goodlucj.github.io/MTGODSON-">
+    
     <title>MTGODSON - Graphic Designer & Creative Director</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23667eea'>M</text></svg>">
 </head>
 <body>
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search portfolio, services..." aria-label="Search website">
+        <button class="search-btn" onclick="performSearch()"><i class="fas fa-search"></i></button>
+        <div id="searchResults" class="search-results"></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -18,6 +71,7 @@
                 <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#admin" class="nav-link">Admin</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -66,36 +120,65 @@
     <section id="portfolio" class="portfolio">
         <div class="container">
             <h2 class="section-title">Recent Work</h2>
-            <div class="portfolio-grid">
+            <div class="portfolio-actions">
+                <button class="admin-btn" onclick="openAddPortfolioModal()" title="Add new portfolio item">
+                    <i class="fas fa-plus"></i> Add Portfolio
+                </button>
+            </div>
+            <div class="portfolio-grid" id="portfolioGrid">
                 <div class="portfolio-item">
                     <div class="portfolio-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
                     <h3>Brand Identity</h3>
                     <p>Complete branding package including logo and guidelines</p>
+                    <div class="portfolio-actions-item">
+                        <button class="edit-btn" onclick="editPortfolio(0)" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" onclick="deletePortfolio(0)" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
                     <h3>Social Media Campaign</h3>
                     <p>Engaging graphics for multi-platform social media</p>
+                    <div class="portfolio-actions-item">
+                        <button class="edit-btn" onclick="editPortfolio(1)" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" onclick="deletePortfolio(1)" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
                     <h3>Video Production</h3>
                     <p>Professional promotional video editing and production</p>
+                    <div class="portfolio-actions-item">
+                        <button class="edit-btn" onclick="editPortfolio(2)" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" onclick="deletePortfolio(2)" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
                     <h3>Poster Design</h3>
                     <p>Eye-catching posters for events and promotions</p>
+                    <div class="portfolio-actions-item">
+                        <button class="edit-btn" onclick="editPortfolio(3)" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" onclick="deletePortfolio(3)" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
                     <h3>Logo Concepts</h3>
                     <p>Creative logo designs tailored to brand vision</p>
+                    <div class="portfolio-actions-item">
+                        <button class="edit-btn" onclick="editPortfolio(4)" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" onclick="deletePortfolio(4)" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
                     <h3>UI/UX Design</h3>
                     <p>User-centered design for digital products</p>
+                    <div class="portfolio-actions-item">
+                        <button class="edit-btn" onclick="editPortfolio(5)" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" onclick="deletePortfolio(5)" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,26 +188,47 @@
     <section id="services" class="services">
         <div class="container">
             <h2 class="section-title">Services</h2>
-            <div class="services-grid">
+            <div class="services-actions">
+                <button class="admin-btn" onclick="openAddServiceModal()" title="Add new service">
+                    <i class="fas fa-plus"></i> Add Service
+                </button>
+            </div>
+            <div class="services-grid" id="servicesGrid">
                 <div class="service-card">
                     <i class="fas fa-pencil-ruler"></i>
                     <h3>Logo & Brand Design</h3>
                     <p>Create memorable logos and complete brand identities that represent your vision</p>
+                    <div class="service-actions">
+                        <button class="edit-btn" onclick="editService(0)" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" onclick="deleteService(0)" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-film"></i>
                     <h3>Video Editing</h3>
                     <p>Professional video editing and production for promotional content</p>
+                    <div class="service-actions">
+                        <button class="edit-btn" onclick="editService(1)" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" onclick="deleteService(1)" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-images"></i>
                     <h3>Graphic Design</h3>
                     <p>Custom graphics for social media, flyers, posters, and more</p>
+                    <div class="service-actions">
+                        <button class="edit-btn" onclick="editService(2)" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" onclick="deleteService(2)" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-paint-brush"></i>
                     <h3>Brand Identity</h3>
                     <p>Comprehensive branding packages including guidelines and assets</p>
+                    <div class="service-actions">
+                        <button class="edit-btn" onclick="editService(3)" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" onclick="deleteService(3)" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -160,20 +264,94 @@
                         <p>Phone: <a href="tel:+255765481200">+255 765 481 200</a></p>
                     </div>
                     <div class="social-links">
-                        <a href="https://instagram.com" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://twitter.com" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://behance.net" class="social-link" target="_blank"><i class="fab fa-behance"></i></a>
-                        <a href="https://linkedin.com" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://instagram.com" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                        <a href="https://behance.net" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-behance"></i></a>
+                        <a href="https://linkedin.com" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Admin Section -->
+    <section id="admin" class="admin-section">
+        <div class="container">
+            <h2 class="section-title">Admin Panel</h2>
+            <div class="admin-content">
+                <div class="admin-card">
+                    <h3><i class="fas fa-image"></i> Manage Portfolio</h3>
+                    <p>Add, edit, or delete portfolio items from your showcase</p>
+                    <button class="admin-action-btn" onclick="document.getElementById('portfolio').scrollIntoView({behavior: 'smooth'})">Go to Portfolio</button>
+                </div>
+                <div class="admin-card">
+                    <h3><i class="fas fa-briefcase"></i> Manage Services</h3>
+                    <p>Update your services and what you offer to clients</p>
+                    <button class="admin-action-btn" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">Go to Services</button>
+                </div>
+                <div class="admin-card">
+                    <h3><i class="fas fa-download"></i> Export Data</h3>
+                    <p>Download your portfolio and services data as JSON</p>
+                    <button class="admin-action-btn" onclick="exportData()">Export Data</button>
+                </div>
+                <div class="admin-card">
+                    <h3><i class="fas fa-redo"></i> Reset All</h3>
+                    <p>Reset portfolio and services to default values</p>
+                    <button class="admin-action-btn" onclick="resetAllData()">Reset Data</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Modals -->
+    <div id="portfolioModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePortfolioModal()">&times;</span>
+            <h2>Add/Edit Portfolio Item</h2>
+            <form id="portfolioForm">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="portfolioTitle" placeholder="Project Title" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="portfolioDescription" placeholder="Project Description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="text" id="portfolioImage" placeholder="Image URL or gradient">
+                </div>
+                <button type="submit" class="submit-button">Save Portfolio Item</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeServiceModal()">&times;</span>
+            <h2>Add/Edit Service</h2>
+            <form id="serviceForm">
+                <div class="form-group">
+                    <label>Service Title</label>
+                    <input type="text" id="serviceTitle" placeholder="Service Title" required>
+                </div>
+                <div class="form-group">
+                    <label>Service Description</label>
+                    <textarea id="serviceDescription" placeholder="Service Description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Icon Class (FontAwesome)</label>
+                    <input type="text" id="serviceIcon" placeholder="e.g., fas fa-pencil-ruler" value="fas fa-star">
+                </div>
+                <button type="submit" class="submit-button">Save Service</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 MTGODSON. All rights reserved.</p>
+            <p>&copy; 2024 MTGODSON. All rights reserved. | <a href="#" onclick="toggleSitemap()">Sitemap</a></p>
         </div>
     </footer>
 

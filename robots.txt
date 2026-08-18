@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /*.js
+Disallow: /*.css
+
+Sitemap: https://Goodlucj.github.io/MTGODSON-/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
