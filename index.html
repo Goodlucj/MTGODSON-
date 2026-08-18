@@ -54,6 +54,28 @@
     <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23667eea'>M</text></svg>">
 </head>
 <body>
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>Admin Login</h2>
+                <span class="login-close" onclick="closeLoginModal()">&times;</span>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="login-button">Login</button>
+                <p class="login-error" id="loginError"></p>
+            </form>
+        </div>
+    </div>
+
     <!-- Search Bar -->
     <div class="search-container">
         <input type="text" id="searchInput" class="search-input" placeholder="Search portfolio, services..." aria-label="Search website">
@@ -71,7 +93,9 @@
                 <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><a href="#admin" class="nav-link">Admin</a></li>
+                <li id="adminNavItem" style="display:none;"><a href="#admin" class="nav-link">Admin</a></li>
+                <li id="loginNavItem"><a href="javascript:openLoginModal()" class="nav-link login-link"><i class="fas fa-lock"></i> Admin</a></li>
+                <li id="logoutNavItem" style="display:none;"><a href="javascript:logout()" class="nav-link logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -120,7 +144,7 @@
     <section id="portfolio" class="portfolio">
         <div class="container">
             <h2 class="section-title">Recent Work</h2>
-            <div class="portfolio-actions">
+            <div class="portfolio-actions" id="portfolioActionsAdmin" style="display:none;">
                 <button class="admin-btn" onclick="openAddPortfolioModal()" title="Add new portfolio item">
                     <i class="fas fa-plus"></i> Add Portfolio
                 </button>
@@ -130,7 +154,7 @@
                     <div class="portfolio-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
                     <h3>Brand Identity</h3>
                     <p>Complete branding package including logo and guidelines</p>
-                    <div class="portfolio-actions-item">
+                    <div class="portfolio-actions-item" id="portfolio-actions-0" style="display:none;">
                         <button class="edit-btn" onclick="editPortfolio(0)" title="Edit"><i class="fas fa-edit"></i></button>
                         <button class="delete-btn" onclick="deletePortfolio(0)" title="Delete"><i class="fas fa-trash"></i></button>
                     </div>
@@ -139,7 +163,7 @@
                     <div class="portfolio-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
                     <h3>Social Media Campaign</h3>
                     <p>Engaging graphics for multi-platform social media</p>
-                    <div class="portfolio-actions-item">
+                    <div class="portfolio-actions-item" id="portfolio-actions-1" style="display:none;">
                         <button class="edit-btn" onclick="editPortfolio(1)" title="Edit"><i class="fas fa-edit"></i></button>
                         <button class="delete-btn" onclick="deletePortfolio(1)" title="Delete"><i class="fas fa-trash"></i></button>
                     </div>
@@ -148,7 +172,7 @@
                     <div class="portfolio-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
                     <h3>Video Production</h3>
                     <p>Professional promotional video editing and production</p>
-                    <div class="portfolio-actions-item">
+                    <div class="portfolio-actions-item" id="portfolio-actions-2" style="display:none;">
                         <button class="edit-btn" onclick="editPortfolio(2)" title="Edit"><i class="fas fa-edit"></i></button>
                         <button class="delete-btn" onclick="deletePortfolio(2)" title="Delete"><i class="fas fa-trash"></i></button>
                     </div>
@@ -157,7 +181,7 @@
                     <div class="portfolio-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
                     <h3>Poster Design</h3>
                     <p>Eye-catching posters for events and promotions</p>
-                    <div class="portfolio-actions-item">
+                    <div class="portfolio-actions-item" id="portfolio-actions-3" style="display:none;">
                         <button class="edit-btn" onclick="editPortfolio(3)" title="Edit"><i class="fas fa-edit"></i></button>
                         <button class="delete-btn" onclick="deletePortfolio(3)" title="Delete"><i class="fas fa-trash"></i></button>
                     </div>
@@ -166,7 +190,7 @@
                     <div class="portfolio-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
                     <h3>Logo Concepts</h3>
                     <p>Creative logo designs tailored to brand vision</p>
-                    <div class="portfolio-actions-item">
+                    <div class="portfolio-actions-item" id="portfolio-actions-4" style="display:none;">
                         <button class="edit-btn" onclick="editPortfolio(4)" title="Edit"><i class="fas fa-edit"></i></button>
                         <button class="delete-btn" onclick="deletePortfolio(4)" title="Delete"><i class="fas fa-trash"></i></button>
                     </div>
@@ -175,7 +199,7 @@
                     <div class="portfolio-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
                     <h3>UI/UX Design</h3>
                     <p>User-centered design for digital products</p>
-                    <div class="portfolio-actions-item">
+                    <div class="portfolio-actions-item" id="portfolio-actions-5" style="display:none;">
                         <button class="edit-btn" onclick="editPortfolio(5)" title="Edit"><i class="fas fa-edit"></i></button>
                         <button class="delete-btn" onclick="deletePortfolio(5)" title="Delete"><i class="fas fa-trash"></i></button>
                     </div>
@@ -188,7 +212,7 @@
     <section id="services" class="services">
         <div class="container">
             <h2 class="section-title">Services</h2>
-            <div class="services-actions">
+            <div class="services-actions" id="servicesActionsAdmin" style="display:none;">
                 <button class="admin-btn" onclick="openAddServiceModal()" title="Add new service">
                     <i class="fas fa-plus"></i> Add Service
                 </button>
@@ -198,7 +222,7 @@
                     <i class="fas fa-pencil-ruler"></i>
                     <h3>Logo & Brand Design</h3>
                     <p>Create memorable logos and complete brand identities that represent your vision</p>
-                    <div class="service-actions">
+                    <div class="service-actions" id="service-actions-0" style="display:none;">
                         <button class="edit-btn" onclick="editService(0)" title="Edit"><i class="fas fa-edit"></i></button>
                         <button class="delete-btn" onclick="deleteService(0)" title="Delete"><i class="fas fa-trash"></i></button>
                     </div>
@@ -207,7 +231,7 @@
                     <i class="fas fa-film"></i>
                     <h3>Video Editing</h3>
                     <p>Professional video editing and production for promotional content</p>
-                    <div class="service-actions">
+                    <div class="service-actions" id="service-actions-1" style="display:none;">
                         <button class="edit-btn" onclick="editService(1)" title="Edit"><i class="fas fa-edit"></i></button>
                         <button class="delete-btn" onclick="deleteService(1)" title="Delete"><i class="fas fa-trash"></i></button>
                     </div>
@@ -216,7 +240,7 @@
                     <i class="fas fa-images"></i>
                     <h3>Graphic Design</h3>
                     <p>Custom graphics for social media, flyers, posters, and more</p>
-                    <div class="service-actions">
+                    <div class="service-actions" id="service-actions-2" style="display:none;">
                         <button class="edit-btn" onclick="editService(2)" title="Edit"><i class="fas fa-edit"></i></button>
                         <button class="delete-btn" onclick="deleteService(2)" title="Delete"><i class="fas fa-trash"></i></button>
                     </div>
@@ -225,7 +249,7 @@
                     <i class="fas fa-paint-brush"></i>
                     <h3>Brand Identity</h3>
                     <p>Comprehensive branding packages including guidelines and assets</p>
-                    <div class="service-actions">
+                    <div class="service-actions" id="service-actions-3" style="display:none;">
                         <button class="edit-btn" onclick="editService(3)" title="Edit"><i class="fas fa-edit"></i></button>
                         <button class="delete-btn" onclick="deleteService(3)" title="Delete"><i class="fas fa-trash"></i></button>
                     </div>
@@ -275,9 +299,12 @@
     </section>
 
     <!-- Admin Section -->
-    <section id="admin" class="admin-section">
+    <section id="admin" class="admin-section" style="display:none;">
         <div class="container">
             <h2 class="section-title">Admin Panel</h2>
+            <div class="admin-header">
+                <p>Welcome Admin! You are logged in as: <strong id="adminEmail"></strong></p>
+            </div>
             <div class="admin-content">
                 <div class="admin-card">
                     <h3><i class="fas fa-image"></i> Manage Portfolio</h3>
@@ -297,7 +324,7 @@
                 <div class="admin-card">
                     <h3><i class="fas fa-redo"></i> Reset All</h3>
                     <p>Reset portfolio and services to default values</p>
-                    <button class="admin-action-btn" onclick="resetAllData()">Reset Data</button>
+                    <button class="admin-action-btn danger" onclick="resetAllData()">Reset Data</button>
                 </div>
             </div>
         </div>
